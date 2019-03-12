@@ -3,12 +3,14 @@ Python tool for bytebeat compositions, by Kasran
 
 **This tool requires Python 3. It won't work with Python 2.**
 
+
 ## What on earth is bytebeat?
 [This website](http://canonical.org/~kragen/bytebeat/) explains it better than
 I ever could in a little readme, but the gist is that bytebeat is a genre of
 computer music made with a program that outputs a stream of bytes that's
 interpreted as a soundwave. Tiny programs can make very interesting (albeit
 perhaps somewhat harsh) musical patterns!
+
 
 ## Usage
 Here are some examples for using this tool.
@@ -24,11 +26,11 @@ the byte stream.
 
 ### Passing arguments to your module
 ```
-python pybeat.py test 432
+python pybeat.py test 400
 ```
 You can optionally pass additional arguments into your bytebeat module from the
 command line. The included example module allows you to change the tuning of A4
-to, for example, 432Hz.
+to, for example, 400Hz.
 
 ### Rendering to .wav
 ```
@@ -49,6 +51,25 @@ python pybeat.py -e "(t*5)&t>>7"
 You can use `--eval` or `-e` instead of a module name, providing a Python
 expression that uses `t` for the current time step, and pybeat will use that
 to generate a bytestream.
+
+
+## raw2wav
+`raw2wav.py` is an auxiliary tool used by pybeat to render .wav files. It's a
+Python module, but can also be run standalone, in which case it accepts a stream
+of bytes from stdin and renders using those. Here's how to use it standalone:
+```
+python raw2wav.py (wlen) (filename) (sample rate)
+```
+e.g.:
+```
+python raw2wav.py 30 out.wav 8000
+```
+If arguments are not provided it will default to 30 seconds at 8000Hz to
+`out.wav`.
+
+Feel free to use it to render bytebeat programs of other kinds if you think it's
+useful!
+
 
 ## Oh god please help
 This tool is very new and is under construction! It will probably break if

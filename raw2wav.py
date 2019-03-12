@@ -1,4 +1,5 @@
-# raw2wav.py
+# this is pretty much a straight port of https://github.com/HertzDevil/raw2wav
+# so thanks HertzDevil
 from sys import stdin
 
 i2b = lambda i: i.to_bytes(4,'little')
