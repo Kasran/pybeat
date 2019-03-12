@@ -12,7 +12,7 @@ ap = argparse.ArgumentParser(
 ap.add_argument('module',
     nargs='*', default=None,
     help="the py bytebeat module to render")
-ap.add_argument('--exec', '-e',
+ap.add_argument('--eval', '-e',
     type=str, default=None,
     help="executes a function of t passed as a parameter (overrides module)")
 
@@ -31,13 +31,16 @@ args = ap.parse_args()
 print(args)
 render = args.render
 if render is None: render = ren_def
+wlen = args.len
+if render is False: wlen = None
 
 # where are the bytes gonna come from
 if args.exec:
+    from math import *
     update = eval("lambda t: (%s)"%args.exec)
 elif args.module:
     mod, params = args.module[0], args.module[1:]
-    update = __import__(mod).setup(*params)
+    update = __import__(mod).setup(args.freq, wlen, *params)
 else:
     stderr.write("please include either a module name or --exec\n")
     exit(1)
