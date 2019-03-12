@@ -62,7 +62,7 @@ python raw2wav.py (wlen) (filename) (sample rate)
 ```
 e.g.:
 ```
-python raw2wav.py 30 out.wav 8000
+./bytebeat_prgm | python raw2wav.py 30 out.wav 8000
 ```
 If arguments are not provided it will default to 30 seconds at 8000Hz to
 `out.wav`.
