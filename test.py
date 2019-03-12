@@ -1,4 +1,5 @@
 # Pybeat test module
+from math import *
 
 # A pybeat module must contain a setup method, which is called when pybeat
 # imports the module.
@@ -12,7 +13,6 @@
 # argument, t (for the current sample number), and return a number (which will
 # be rounded and truncated to a byte by pybeat).
 def setup(hz, wlen, a_tune=440, *_):
-    from math import *
 
     a_tune = int(a_tune)
     note=lambda n: a_tune*2**((n-69)/12)/hz

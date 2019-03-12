@@ -28,24 +28,21 @@ ap.add_argument('--len', '-l',
     help="length in seconds (default: 30)")
 
 args = ap.parse_args()
-print(args)
 render = args.render
 if render is None: render = ren_def
 wlen = args.len
 if render is False: wlen = None
 
 # where are the bytes gonna come from
-if args.exec:
+if args.eval:
     from math import *
-    update = eval("lambda t: (%s)"%args.exec)
+    update = eval("lambda t: (%s)"%args.eval)
 elif args.module:
     mod, params = args.module[0], args.module[1:]
     update = __import__(mod).setup(args.freq, wlen, *params)
 else:
     stderr.write("please include either a module name or --exec\n")
     exit(1)
-
-print(update)
 
 play_stream = map(lambda t: (int(update(t))&0xff).to_bytes(1,'big'), count())
 

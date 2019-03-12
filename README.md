@@ -1,6 +1,8 @@
 # Pybeat
 Python tool for bytebeat compositions, by Kasran
 
+**This tool requires Python 3. It won't work with Python 2.**
+
 ## What on earth is bytebeat?
 [This website](http://canonical.org/~kragen/bytebeat/) explains it better than
 I ever could in a little readme, but the gist is that bytebeat is a genre of
@@ -19,6 +21,14 @@ Opens `test.py` (see that file for an explanation of how it's structured) and
 runs the bytebeat code therein, printing the raw bytes to stdout forever. Use
 this if your bytebeat toolchain uses other tools that need to do things with
 the byte stream.
+
+### Passing arguments to your module
+```
+python pybeat.py test 432
+```
+You can optionally pass additional arguments into your bytebeat module from the
+command line. The included example module allows you to change the tuning of A4
+to, for example, 432Hz.
 
 ### Rendering to .wav
 ```
